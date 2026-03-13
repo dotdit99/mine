@@ -73,4 +73,53 @@ class Manager {
                     manager.send(new QuickDelivery("쿠팡로켓배송"));
                     break;
                 case 3:
-                    // FedEx라는 이름을 가진 '항공' 객체를
+                    // FedEx라는 이름을 가진 '항공' 객체를 생성해 전달합니다.
+                    manager.send(new AirDelivery("FedEx"));
+                    break;
+                default:
+                    // 1~4 이외의 번호를 눌렀을 때의 안내 문구입니다.
+                    System.out.println("배송 시스템을 잘못 선택하셨습니다.");
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------
+
+// Delivery를 상속받아 '택배'만의 특징을 정의하는 클래스입니다.
+class ParcelDelivery extends Delivery {
+    // 부모 생성자에게 회사명을 전달하여 초기화 과정을 거칩니다.
+    public ParcelDelivery(String company) {
+        super(company);
+    }
+
+    // [오버라이딩] 부모의 deliver()를 택배 전용 문구로 바꿉니다.
+    @Override
+    void deliver() {
+        System.out.println("택배 배송을 시작합니다. (2~3일 소요)");
+    }
+}
+
+// Delivery를 상속받아 '퀵'만의 특징을 정의하는 클래스입니다.
+class QuickDelivery extends Delivery {
+    public QuickDelivery(String company) {
+        super(company);
+    }
+
+    @Override
+    void deliver() {
+        System.out.println("퀵 배송을 시작합니다. (당일 도착 예정)");
+    }
+}
+
+// Delivery를 상속받아 '항공'만의 특징을 정의하는 클래스입니다.
+class AirDelivery extends Delivery {
+    public AirDelivery(String company) {
+        super(company);
+    }
+
+    @Override
+    void deliver() {
+        System.out.println("항공 배송을 시작합니다. (해외 배송)");
+    }
+}
