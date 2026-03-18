@@ -7,6 +7,8 @@ package 인터페이스;
 // - 모든 필드는 상수로 변경(public static final 이 자동 추가 됨)
 // - 다중 구현 가능 (여러개의 implements 가능)
 
+// 디폴트 메서드: 인터페이스에 있는 구현 메서드를 의미
+
 public interface RemoCon {
     int MAX_VOLUME = 100; // 자동으로 public static final이 붙음, 상속 안됨
     int MIN_VOLUME = 0;
@@ -14,6 +16,11 @@ public interface RemoCon {
     void turnOFF();
 
     void setVolume(int volume);
+
+    default void setMute(boolean mute){
+        if (mute) System.out.println("무음 처리 합니다.");
+        else System.out.println("무음 해제 합니다.");
+    }
 
     static void changeBattery(){
         System.out.println("건전지를 교환 합니다.");
